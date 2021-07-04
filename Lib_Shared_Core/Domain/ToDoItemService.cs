@@ -11,8 +11,6 @@ namespace Domain
         private readonly Stack<List<ToDoItem>> redoStack = new();
 
         public List<ToDoItem> ToDoItems => this.undoStack.Any() ? this.undoStack.Peek() : new List<ToDoItem>();
-        //public List<ToDoItem> UndoItems => this.undoStack.Any() ? this.undoStack.Peek() : new List<ToDoItem>();
-        //public List<ToDoItem> RedoItems => this.redoStack.Any() ? this.redoStack.Peek() : new List<ToDoItem>();
 
         public void AddItem(ToDoItem item)
         {

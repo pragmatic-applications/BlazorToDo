@@ -4,12 +4,13 @@ namespace Interfaces
 {
     public interface ITaskService<T>
     {
-        bool CanRemove { get; }
         void Clear();
 
         List<T> ToDoItems { get; }
 
         void AddItem(T toDoItem);
+
+        bool CanRemove { get; }
         void RemoveDone();
 
         bool CanUndo { get; }
