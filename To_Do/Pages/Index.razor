@@ -1,0 +1,30 @@
+﻿@page "/"
+
+<h1>To Do List</h1>
+
+<EditForm Model="this.ToDoItem" OnValidSubmit="this.AddItem">
+    <DataAnnotationsValidator />
+
+    <div class="form-group">
+        <label class="control-label">Item</label>
+        <input @bind="this.ToDoItem.Title" class="form-control" placeholder="Add a Task" />
+        <ValidationMessage For="@(() => this.ToDoItem.Title)" />
+    </div>
+
+    <div class="form-group-">
+        <button type="button" class="btn btn-secondary" disabled="@(!this.ToDoItemService.CanUndo)" @onclick="this.ToDoItemService.Undo">Undo</button>
+        <button type="button" class="btn btn-secondary" disabled="@(!this.ToDoItemService.CanRedo)" @onclick="this.ToDoItemService.Redo">Redo</button>
+        <button type="button" class="btn btn-danger" disabled="@(!this.ToDoItemService.CanRemove)" @onclick="this.ToDoItemService.RemoveDone">Remove Done</button>
+        <button type="submit" class="btn btn-primary">Add Item</button>
+    </div>
+</EditForm>
+
+<ul class="list-group">
+    @foreach (var item in this.ToDoItemService.ToDoItems)
+    {
+        <li class="list-group-item">
+            <span>@item.Title</span>
+            <input type="checkbox" @bind="@item.IsDone" />
+        </li>
+    }
+</ul>
